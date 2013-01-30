@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[cantellow blog]]></title>
+  <title><![CDATA[cantellow]]></title>
   <link href="http://cantellow.github.com/atom.xml" rel="self"/>
   <link href="http://cantellow.github.com/"/>
-  <updated>2013-01-30T21:02:34+08:00</updated>
+  <updated>2013-01-30T21:03:31+08:00</updated>
   <id>http://cantellow.github.com/</id>
   <author>
     <name><![CDATA[cantellow]]></name>
