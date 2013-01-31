@@ -100,6 +100,43 @@
 2、做技术的需要沉淀，需要积累，需要厚积而薄发，blog的方式能让你的知识融会贯通，要将脑海里的知识文本化，需要更多的代价和勇气，当然最后收获的也就更多。</p>
 
 <p>嗯，ITEYE上的文章比较多，我会转移部分文章到此blog，最后感谢<a target='_blank' href="http://octopress.org/">octopress</a>，感谢<a target='_blank' href="https://github.com/">github</a>，感谢open source。</p>
+
+<p>===============================================================<br>
+在配置分享和评论的时候，发现jiathis的格式混乱：<br>
+<img src="/images/posts/1.jpg"></img><br>
+给客户反馈，下面代码可以解决此问题：<br></p>
+
+<figure class='code'><figcaption><span>Javascript Code  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</span><span class='line'>    <span class="nb">document</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="nx">dosomething</span><span class="p">;</span>
+</span><span class='line'>        <span class="kd">function</span> <span class="nx">dosomething</span><span class="p">(){</span>
+</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="s1">&#39;complete&#39;</span><span class="p">){</span>
+</span><span class='line'>                        <span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+</span><span class='line'>                        <span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">div</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>                                <span class="k">if</span><span class="p">(</span><span class="nx">div</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">className</span> <span class="o">==</span> <span class="s1">&#39;flash-video&#39;</span><span class="p">){</span>
+</span><span class='line'>                                        <span class="nx">div</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+</span><span class='line'>                                <span class="p">}</span>
+</span><span class='line'>                        <span class="p">}</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 
@@ -159,19 +196,18 @@ var jiathis_config = {data_track_clickback:'true'};
 <div id="uyan_frame"></div>
 <script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1523819" async=""></script>
 <!-- UY END -->
-
 <script>
-    	document.onreadystatechange = dosomething;
-		function dosomething(){
-			if(document.readyState == 'complete'){
-				var div = document.getElementsByTagName('div');
-				for(i=0;i<div.length;i++){
-					if(div[i].className == 'flash-video'){
-						div[i].style.display = 'none';
-					}
+    document.onreadystatechange = dosomething;
+	function dosomething(){
+		if(document.readyState == 'complete'){
+			var div = document.getElementsByTagName('div');
+			for(i=0;i<div.length;i++){
+				if(div[i].className == 'flash-video'){
+					div[i].style.display = 'none';
 				}
 			}
 		}
+	}
 </script>
 
   
@@ -180,6 +216,8 @@ var jiathis_config = {data_track_clickback:'true'};
     
     <p class="meta">
       
+      
+        <a class="basic-alignment right" href="/blog/2013/01/31/singleton-pattern-seven-written/" title="Next Post: 单例模式的七种写法">单例模式的七种写法 &raquo;</a>
       
     </p>
   </footer>
@@ -192,6 +230,10 @@ var jiathis_config = {data_track_clickback:'true'};
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/31/singleton-pattern-seven-written/">单例模式的七种写法</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/30/hi-octopress/">Hi octopress</a>

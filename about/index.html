@@ -148,19 +148,18 @@ var jiathis_config = {data_track_clickback:'true'};
 <div id="uyan_frame"></div>
 <script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1523819" async=""></script>
 <!-- UY END -->
-
 <script>
-    	document.onreadystatechange = dosomething;
-		function dosomething(){
-			if(document.readyState == 'complete'){
-				var div = document.getElementsByTagName('div');
-				for(i=0;i<div.length;i++){
-					if(div[i].className == 'flash-video'){
-						div[i].style.display = 'none';
-					}
+    document.onreadystatechange = dosomething;
+	function dosomething(){
+		if(document.readyState == 'complete'){
+			var div = document.getElementsByTagName('div');
+			for(i=0;i<div.length;i++){
+				if(div[i].className == 'flash-video'){
+					div[i].style.display = 'none';
 				}
 			}
 		}
+	}
 </script>
 
   
@@ -178,6 +177,10 @@ var jiathis_config = {data_track_clickback:'true'};
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/31/singleton-pattern-seven-written/">单例模式的七种写法</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/30/hi-octopress/">Hi octopress</a>

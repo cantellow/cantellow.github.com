@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>cantellow's blog</title>
+  <title>单例模式的七种写法 - cantellow's blog</title>
   <meta name="author" content="cantellow">
 
   
@@ -29,7 +29,7 @@ public class Singleton { private static Singleton instance; &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cantellow.github.com/">
+  <link rel="canonical" href="http://cantellow.github.com/blog/2013/01/31/singleton-pattern-seven-written/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,15 +76,12 @@ public class Singleton { private static Singleton instance; &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/01/31/singleton-pattern-seven-written/">单例模式的七种写法</a></h1>
+      <h1 class="entry-title">单例模式的七种写法</h1>
     
     
       <p class="meta">
@@ -107,7 +104,7 @@ public class Singleton { private static Singleton instance; &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>转载请注明出处：<a target='_blank' href="http://cantellow.iteye.com/blog/838473">http://cantellow.iteye.com/blog/838473</a></p>
+<div class="entry-content"><p>转载请注明出处：<a target='_blank' href="http://cantellow.iteye.com/blog/838473">http://cantellow.iteye.com/blog/838473</a></p>
 
 <h3>第一种（懒汉，线程不安全）：</h3>
 
@@ -379,22 +376,16 @@ public class Singleton { private static Singleton instance; &hellip;">
 
 <p>对我来说，我比较喜欢第三种和第五种方式，简单易懂，而且在JVM层实现了线程安全（如果不是多个类加载器环境），一般的情况下，我会使用第三种方式，只有在要明确实现lazy loading效果时才会使用第五种方式，另外，如果涉及到反序列化创建对象时我会试着使用枚举的方式来实现单例，不过，我一直会保证我的程序是线程安全的，而且我永远不会使用第一种和第二种方式，如果有其他特殊的需求，我可能会使用第七种方式，毕竟，JDK1.5已经没有双重检查锁定的问题了。</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/30/hi-octopress/">Hi Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">cantellow</span></span>
+
+      
 
 
 
@@ -406,68 +397,72 @@ public class Singleton { private static Singleton instance; &hellip;">
   
 
 
-<time datetime="2013-01-30T21:58:00+08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2013</time>
-        
-      </p>
+<time datetime="2013-01-31T15:15:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>Java</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  
+  
 
+  
+     <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_qzone">QQ空间</a>
+	<a class="jiathis_button_tsina">新浪微博</a>
+	<a class="jiathis_button_tqq">腾讯微博</a>
+	<a class="jiathis_button_renren">人人网</a>
+	<a href="http://www.jiathis.com/share?uid=1523819" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1523819" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1523819" async=""></script>
+<!-- UY END -->
+<script>
+    document.onreadystatechange = dosomething;
+	function dosomething(){
+		if(document.readyState == 'complete'){
+			var div = document.getElementsByTagName('div');
+			for(i=0;i<div.length;i++){
+				if(div[i].className == 'flash-video'){
+					div[i].style.display = 'none';
+				}
+			}
+		}
+	}
+</script>
 
-  <div class="entry-content"><p>我的上一个博客<a target='_blank' href="http://cantellow.iteye.com">ITEYE</a>其实已经荒废了很久了，最近有想法重拾：<br>
-1、觉得<a target='_blank' href="http://octopress.org/">octopress</a>的风格非常好看，还有配合<a target='_blank' href="https://github.com/">github</a>搭建省下了VPS的钱<br>
-2、做技术的需要沉淀，需要积累，需要厚积而薄发，blog的方式能让你的知识融会贯通，要将脑海里的知识文本化，需要更多的代价和勇气，当然最后收获的也就更多。</p>
+  
+</div>
 
-<p>嗯，ITEYE上的文章比较多，我会转移部分文章到此blog，最后感谢<a target='_blank' href="http://octopress.org/">octopress</a>，感谢<a target='_blank' href="https://github.com/">github</a>，感谢open source。</p>
-
-<p>===============================================================<br>
-在配置分享和评论的时候，发现jiathis的格式混乱：<br>
-<img src="/images/posts/1.jpg"></img><br>
-给客户反馈，下面代码可以解决此问题：<br></p>
-
-<figure class='code'><figcaption><span>Javascript Code  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="nb">document</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="nx">dosomething</span><span class="p">;</span>
-</span><span class='line'>        <span class="kd">function</span> <span class="nx">dosomething</span><span class="p">(){</span>
-</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="s1">&#39;complete&#39;</span><span class="p">){</span>
-</span><span class='line'>                        <span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
-</span><span class='line'>                        <span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">div</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-</span><span class='line'>                                <span class="k">if</span><span class="p">(</span><span class="nx">div</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">className</span> <span class="o">==</span> <span class="s1">&#39;flash-video&#39;</span><span class="p">){</span>
-</span><span class='line'>                                        <span class="nx">div</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
-</span><span class='line'>                                <span class="p">}</span>
-</span><span class='line'>                        <span class="p">}</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/30/hi-octopress/" title="Previous Post: Hi octopress">&laquo; Hi octopress</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 </div>
-  
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -491,6 +486,7 @@ public class Singleton { private static Singleton instance; &hellip;">
 
   
 </aside>
+
 
     </div>
   </div>
