@@ -1,0 +1,20 @@
+---
+layout: post
+title: "早前的一些ppt"
+date: 2013-01-31 16:37
+comments: true
+categories: Java
+---
+slideshare被屏蔽了，无力吐槽，只好上传到豆丁，将就一下吧。<br>
+<!-- more -->
+<h3>NO1</h3>
+第一个是JVM的分享，当时就职于raisecom，时间是在2011年3月21日，适合新手阅读:<br>
+<embed src='http://www.docin.com/DocinViewer-594450747-144.swf' width='650' height='490' type=application/x-shockwave-flash ALLOWFULLSCREEN='true' ALLOWSCRIPTACCESS='always'></embed>
+
+<h3>NO2</h3>
+第二是代码质量方面的分享，还是在raisecom，时间是2011年5月19日:<br>
+<embed src='http://www.docin.com/DocinViewer-594450748-144.swf' width='650' height='490' type=application/x-shockwave-flash ALLOWFULLSCREEN='true' ALLOWSCRIPTACCESS='always'></embed>
+
+<h3>NO3</h3>
+第三个是重构方面的，时间和地点与第二个一样:<br>
+<embed src='http://www.docin.com/DocinViewer-594450749-144.swf' width='650' height='490' type=application/x-shockwave-flash ALLOWFULLSCREEN='true' ALLOWSCRIPTACCESS='always'></embed>
