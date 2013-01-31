@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>photo 2011年末 线上重大经验教训 - cantellow's blog</title>
+  <meta name="author" content="cantellow">
+
+  
+  <meta name="description" content="这是一封内部邮件。 新年伊始，去年的3个月相信对各位都是一段非常难忘的岁月，回过头来一想，以前遇到的各种苦难和困难根本不算什么，咬咬牙就过去了，从另一方面说困难和问题对我们是一件宝贵的财富，特别是一些线上重大问题，为此我整理了一些，目的是学习更多的东西避免下次犯同样的错误。 1、新机器的配置不全 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cantellow.github.com/blog/2013/01/31/album-late-2011-online-significant-lessons-for-renren/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="cantellow's blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">cantellow's blog</a></h1>
+  
+    <h2>记录code人生</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cantellow.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/categories/java">Java开发</a></li>
+  <li><a href="/blog/categories/ios">IOS开发</a></li>
+  <li><a href="/blog/categories/other">其他</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Photo 2011年末 线上重大经验教训</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-31T17:07:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>这是一封内部邮件。</p>
+
+<p>新年伊始，去年的3个月相信对各位都是一段非常难忘的岁月，回过头来一想，以前遇到的各种苦难和困难根本不算什么，咬咬牙就过去了，从另一方面说困难和问题对我们是一件宝贵的财富，特别是一些线上重大问题，为此我整理了一些，目的是学习更多的东西避免下次犯同样的错误。<!-- more --></p>
+
+<h3>1、新机器的配置不全</h3>
+
+
+<p>比如数据库连接的权限，以前旋转在java端的时候还需要安装Jmagick</p>
+
+<h3>2、国庆期间晚上高峰期resin频繁ping超时导致不定时重启</h3>
+
+
+<p>upload的旋转功能访问静态文件走的是外网，龟速的下载速度导致大量的用户TCP连接得不到释放，进而导致高峰期超过最大连接数限制，resin自带的ping失败，然后重启。
+解决问题一般要从问题表现的现象入手，一步一步的找到根本原因。</p>
+
+<h3>3、其他服务超时导致相册服务器内存巨高甚至崩溃</h3>
+
+
+<p>这种现象发生过至少3次了，ICE超时那次表现最典型，我们的photo内存一直占据着95%左右，有时swap都还吃紧，查看堆信息和gc信息都很正常，毫无疑问是direct memory泄漏，猜测是socket连接开辟的DirectByteBuffer因为其他服务超时得不到释放。</p>
+
+<h3>4、为客户端提供的上传接口改了返回值导致客户端大批上传失败</h3>
+
+
+<p>原因是由于我们没有认清客户端的产品特性造成的，客户端一旦发布就很难收回，对他们提供的接口也需要考虑兼容各种版本，涉及客户端的接口改动需要谨慎再谨慎。 </p>
+
+<h3>5、其他服务接口调用方法错误，导致内存溢出</h3>
+
+
+<p>ajax获取评论时错误：java.lang.OutOfMemoryError:unable to create new native thread，根本原因是我们在调用其他服务接口时没有进行任何封装直接调用，而这个接口每次请求时都会新建一个线程且不会消亡，最后导致把内存消耗完毕，没有线程可建从而抛出上述错误。<br>堆内存（Xmx）+ 方法区内存（MaxPermSize）+ 栈内存（Xss,包括虚拟机栈和本地方法栈）*线程数 + NIO direct memory + socket缓存区（receive37KB，send25KB）+ JNI代码 + 虚拟机和GC本身 = java的内存，在物理内存和操作系统内存一定的情况下，创建的线程数目是有限制的。</p>
+
+<h3>6、upload和photo的mem cache model不一致，导致内存巨高甚至崩溃</h3>
+
+
+<p>Mem cache的model不一样，导致调用java序列化还原对象时抛出异常，与mem机器连接开辟的DirectByteBuffer得不到释放，从而导致内存居高不下。 </p>
+
+<h3>7、排序一个非常隐藏的bug把数据库给搞死了</h3>
+
+
+<p>在调用dao方法的时候，java会反射调用model的get和set方法，这个bug就是忽略了这一点导致的。</p>
+
+<h3>8、虚拟机参数导致upload更新时启动失败，间接导致3g几个小时内上传照片全部失败</h3>
+
+
+<p>原因是虚拟机设置的栈太小（128K），导致loadclass线程溢出（这种线程一般“战线”拉的都很长），启动过程中抛出一大堆NoClassNotFound异常，改为-Xss256k就没有问题了。 </p>
+
+<h3>9、spring的BeanFactoryUtils.beanOfTypeIncludingAncestors方法导致CPU巨高</h3>
+
+
+<p>beanOfTypeIncludingAncestors这个方法消耗太多的内存，导致一次普通的请求消耗上100M内存，频繁的GC导致CPU居高不下 </p>
+
+<h3>总结，我碰到过好几次内存巨高的情况，CPU巨高我只碰到过一次，分别说明一下：</h3>
+
+
+<p>1、内存巨高，首先看java堆内存回收是否正常、GC信息是否正常、有没有抛出OOM异常，如果没有基本上就可以确定是java NIO direct memory泄漏，造成DM泄漏主要是通过网络调用其他服务造成的，可以查看一下网络连接情况、socket连接数，记得前往不要忘了查看业务后台信息，一般内存很高的话，后台都有一堆超时异常。<br>
+2、CPU巨高，在没有开销很大的算法情况下，首先考虑到的是GC信息，看看GC的速度是不是比平时快了很多，锁定几个访问量比较大的URL，找一台测试机，频繁刷新这个url，看看gc情况，最后确定唯一的url，利用java自带的MemoryUsage监控内存情况，进而确定问题根本原因。<br> 
+写代码是一件很容易的事情，写好代码就不容易了，写好代码并且让服务跑的很“欢乐”就更不容易了，新的一年，希望我们最大限度“压榨”服务器性能，希望相册服务跑得更加完美。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">cantellow</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-31T17:07:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>Java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+
+  
+     <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_qzone">QQ空间</a>
+	<a class="jiathis_button_tsina">新浪微博</a>
+	<a class="jiathis_button_tqq">腾讯微博</a>
+	<a class="jiathis_button_renren">人人网</a>
+	<a href="http://www.jiathis.com/share?uid=1523819" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1523819" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1523819" async=""></script>
+<!-- UY END -->
+<script>
+    document.onreadystatechange = dosomething;
+	function dosomething(){
+		if(document.readyState == 'complete'){
+			var div = document.getElementsByTagName('div');
+			for(i=0;i<div.length;i++){
+				if(div[i].className == 'flash-video'){
+					div[i].style.display = 'none';
+				}
+			}
+		}
+	}
+</script>
+
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/31/some-ppt/" title="Previous Post: 早前的一些ppt">&laquo; 早前的一些ppt</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/01/31/the-photo-full-line-jvm-tuning/" title="Next Post: Photo全线JVM调优">Photo全线JVM调优 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/31/circular-references-cause-memory-leaks/">循环引用导致的内存泄漏</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/31/the-photo-full-line-jvm-tuning/">Photo全线JVM调优</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/31/album-late-2011-online-significant-lessons-for-renren/">photo 2011年末 线上重大经验教训</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/31/some-ppt/">早前的一些ppt</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/31/singleton-pattern-seven-written/">单例模式的七种写法</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - cantellow -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
