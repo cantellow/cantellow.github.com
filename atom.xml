@@ -4,7 +4,7 @@
   <title><![CDATA[cantellow's blog]]></title>
   <link href="http://cantellow.github.com/atom.xml" rel="self"/>
   <link href="http://cantellow.github.com/"/>
-  <updated>2013-01-31T15:40:40+08:00</updated>
+  <updated>2013-01-31T16:53:02+08:00</updated>
   <id>http://cantellow.github.com/</id>
   <author>
     <name><![CDATA[cantellow]]></name>
@@ -14,6 +14,36 @@
 
   
   <entry>
+    <title type="html"><![CDATA[早前的一些ppt]]></title>
+    <link href="http://cantellow.github.com/blog/2013/01/31/some-ppt/"/>
+    <updated>2013-01-31T16:37:00+08:00</updated>
+    <id>http://cantellow.github.com/blog/2013/01/31/some-ppt</id>
+    <content type="html"><![CDATA[<p>slideshare被屏蔽了，无力吐槽，只好上传到豆丁，将就一下吧。<br></p>
+
+<!-- more -->
+
+
+<h3>NO1</h3>
+
+
+<p>第一个是JVM的分享，当时就职于raisecom，时间是在2011年3月21日，适合新手阅读:<br>
+<embed src='http://www.docin.com/DocinViewer-594450747-144.swf' width='650' height='490' type=application/x-shockwave-flash ALLOWFULLSCREEN='true' ALLOWSCRIPTACCESS='always'></embed></p>
+
+<h3>NO2</h3>
+
+
+<p>第二是代码质量方面的分享，还是在raisecom，时间是2011年5月19日:<br>
+<embed src='http://www.docin.com/DocinViewer-594450748-144.swf' width='650' height='490' type=application/x-shockwave-flash ALLOWFULLSCREEN='true' ALLOWSCRIPTACCESS='always'></embed></p>
+
+<h3>NO3</h3>
+
+
+<p>第三个是重构方面的，时间和地点与第二个一样:<br>
+<embed src='http://www.docin.com/DocinViewer-594450749-144.swf' width='650' height='490' type=application/x-shockwave-flash ALLOWFULLSCREEN='true' ALLOWSCRIPTACCESS='always'></embed></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[单例模式的七种写法]]></title>
     <link href="http://cantellow.github.com/blog/2013/01/31/singleton-pattern-seven-written/"/>
     <updated>2013-01-31T15:15:00+08:00</updated>
@@ -21,6 +51,9 @@
     <content type="html"><![CDATA[<p>转载请注明出处：<a target='_blank' href="http://cantellow.iteye.com/blog/838473">http://cantellow.iteye.com/blog/838473</a></p>
 
 <h3>第一种（懒汉，线程不安全）：</h3>
+
+
+<!-- more -->
 
 
 
@@ -300,6 +333,9 @@
     <content type="html"><![CDATA[<p>我的上一个博客<a target='_blank' href="http://cantellow.iteye.com">ITEYE</a>其实已经荒废了很久了，最近有想法重拾：<br>
 1、觉得<a target='_blank' href="http://octopress.org/">octopress</a>的风格非常好看，还有配合<a target='_blank' href="https://github.com/">github</a>搭建省下了VPS的钱<br>
 2、做技术的需要沉淀，需要积累，需要厚积而薄发，blog的方式能让你的知识融会贯通，要将脑海里的知识文本化，需要更多的代价和勇气，当然最后收获的也就更多。</p>
+
+<!-- more -->
+
 
 <p>嗯，ITEYE上的文章比较多，我会转移部分文章到此blog，最后感谢<a target='_blank' href="http://octopress.org/">octopress</a>，感谢<a target='_blank' href="https://github.com/">github</a>，感谢open source。</p>
 
