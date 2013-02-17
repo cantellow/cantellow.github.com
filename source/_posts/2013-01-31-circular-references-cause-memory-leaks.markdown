@@ -3,7 +3,7 @@ layout: post
 title: "循环引用导致的内存泄漏"
 date: 2013-01-31 17:46
 comments: true
-categories: IOS
+categories: ios
 ---
 有时候didReceiveMemoryWarning不像女人的大姨妈来的那么确定，让人摸不着头脑，不过好在有Instruments这种神器，帮我们解决了不少问题。<br>
 <!-- more -->
