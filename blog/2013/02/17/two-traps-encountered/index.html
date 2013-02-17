@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>2012年工作总结 - cantellow's blog</title>
+  <title>APP升级遇到的两个问题 - cantellow's blog</title>
   <meta name="author" content="cantellow">
 
   
-  <meta name="description" content="此刻，我正在回家的路上写下对2012年的回顾。 1到5月份，在人人网负责相册产品的日常开发、维护。
-6月份，独立策划并开发了一款相册搬家web app，它可以将Qzone/网易相册里的照片一键搬家到人人网。 7月份，从人人网离职，加入到一家创业公司，相册搬家不了了之。 8到9月份，使用C++ &hellip;">
+  <meta name="description" content="NO1,sqlite数据结构不兼容 现象：新的数据插不进去，功能性错误
+解释：之前一直很注意这个问题，但还是忘记了。前一个版本将sqlite建表逻辑更新出去了，当前版本开发中新增了几个列，导致插入数据出错，fmdb lasterror显示没有那几个column。
+临时解决方案： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cantellow.github.com/blog/2013/02/17/summary-of-the-work-in-2012/">
+  <link rel="canonical" href="http://cantellow.github.com/blog/2013/02/17/two-traps-encountered/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -71,7 +72,7 @@
   
   <header>
     
-      <h1 class="entry-title">2012年工作总结</h1>
+      <h1 class="entry-title">APP升级遇到的两个问题</h1>
     
     
       <p class="meta">
@@ -87,27 +88,35 @@
   
 
 
-<time datetime="2013-02-17T11:13:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
+<time datetime="2013-02-17T11:35:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>此刻，我正在回家的路上写下对2012年的回顾。<!-- more --></p>
+<div class="entry-content"><h3>NO1,sqlite数据结构不兼容</h3>
 
-<p>1到5月份，在人人网负责相册产品的日常开发、维护。<br>
-6月份，独立策划并开发了一款相册搬家web app，它可以将Qzone/网易相册里的照片一键搬家到人人网。 <br>
-7月份，从人人网离职，加入到一家创业公司，相册搬家不了了之。 <br>
-8到9月份，使用C++语言开发一款IM程序。 <br>
-10到11月份，开发一款网络程序，类似爬虫之类的，结果不尽如意。 <br>
-12月份到2013年1月份，开始进入IOS开发，和另一同事开发了两款APP，一款是社交类，一款是照片类。</p>
 
-<p>这一年从人人网离职，加入创业公司工作。 <br>
-这一年我接触了C++和object-c两种新语言，已经比较熟悉学习一门新语言的过程，最主要的还是有了第一步，我也更愿意尝试其他语言。 <br>
-这一年我感觉到了一个瓶颈，虽然进入了移动互联网领域，但我并没有觉得自己技术上提高了多少，纵观整个一年没有让我觉得拿得出手的亮点，对此，我希望来年有所突破。</p>
+<p>现象：新的数据插不进去，功能性错误<!-- more --><br>
+解释：之前一直很注意这个问题，但还是忘记了。前一个版本将sqlite建表逻辑更新出去了，当前版本开发中新增了几个列，导致插入数据出错，fmdb lasterror显示没有那几个column。<br>
+临时解决方案：如果这个表里没有任何数据，就drop掉，重新create。<br>
+最终解决方案：最初建表时多用一个extra column，里面保存json数据，可以兼容多个column扩展，也可以新建扩展表。后续版本最好不要更改表结构，如需要考虑好数据兼容和问题。</p>
 
-<p>新的一年里，我希望能结交更多的朋友，谢谢大家。</p>
+<h3>NO2,文件的绝对路径变动</h3>
+
+
+<p>现象：图片显示不出来<br>
+解释：保存图片使用的是绝对路径，这些路径保存在sqlite中，更新之后图片的实际路径变动，通过sqlite中的路径找不到，所以就显示不出来。<br>
+临时解决方案：存储路径时使用相对路径，显示图片时兼容上个版本的绝对路径，将其匹配为相对路径，同时更新数据库。<br>
+最终解决方案：所有对文件的存储都应该使用相对路径，这是因为app升级的时候，它的class id会变：When you do an update, the new version is installed to a completely different location. The contents of a couple of key folders such as /Documents are copied from the old version to the new version. Then the old version is deleted.</p>
+
+<h3>怎么测试app update</h3>
+
+
+<p>测试是软件质量的最后一道防护线，所以测试的流程和质量非常重要，上面两个升级的问题就是因为对app update未测试到导致没有被发现，我们使用OTA来部署app，参考资料：<br>
+<a target="_blank" href="https://help.apple.com/iosdeployment-apps/mac/1.1/?lang=en-us#app43ad871e">Installing apps wirelessly</a><br>
+<a target="_blank" href="http://www.cnblogs.com/yingkong1987/archive/2012/10/28/2743774.html">IOS通过OTA部署App</a></p>
 </div>
 
 
@@ -130,12 +139,12 @@
   
 
 
-<time datetime="2013-02-17T11:13:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
+<time datetime="2013-02-17T11:35:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/other/'>other</a>
+    <a class='category' href='/blog/categories/ios/'>ios</a>
   
 </span>
 
@@ -187,10 +196,8 @@ var jiathis_config = {data_track_clickback:'true'};
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/31/circular-references-cause-memory-leaks/" title="Previous Post: 循环引用导致的内存泄漏">&laquo; 循环引用导致的内存泄漏</a>
+        <a class="basic-alignment left" href="/blog/2013/02/17/summary-of-the-work-in-2012/" title="Previous Post: 2012年工作总结">&laquo; 2012年工作总结</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/02/17/two-traps-encountered/" title="Next Post: APP升级遇到的两个问题">APP升级遇到的两个问题 &raquo;</a>
       
     </p>
   </footer>
