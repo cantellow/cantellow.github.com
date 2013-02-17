@@ -20,4 +20,4 @@ categories: ios
 <a target="_blank" href="https://help.apple.com/iosdeployment-apps/mac/1.1/?lang=en-us#app43ad871e">Installing apps wirelessly</a><br>
 <a target="_blank" href="http://www.cnblogs.com/yingkong1987/archive/2012/10/28/2743774.html">IOS通过OTA部署App</a>
 
-最后特别注意，每次提交app store时都应该保存一份源代码之后再开发下一版的功能，因为提交可能审核不通过，或者发布出去有严重bug需要紧急更新等等。
+最后特别注意，每次提交app store时都应该保存一份源代码之后再开发下一版的功能，因为提交可能审核不通过，或者发布出去有严重bug需要紧急更新等等，如果你使用git，建议使用git-flow。
