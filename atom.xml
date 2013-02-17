@@ -4,7 +4,7 @@
   <title><![CDATA[cantellow's blog]]></title>
   <link href="http://cantellow.github.com/atom.xml" rel="self"/>
   <link href="http://cantellow.github.com/"/>
-  <updated>2013-02-17T12:16:54+08:00</updated>
+  <updated>2013-02-17T12:26:30+08:00</updated>
   <id>http://cantellow.github.com/</id>
   <author>
     <name><![CDATA[cantellow]]></name>
@@ -24,7 +24,7 @@
 <p><strong>现象：</strong>新的数据插不进去，功能性错误<!-- more --><br>
 解释：之前一直很注意这个问题，但还是忘记了。前一个版本将sqlite建表逻辑更新出去了，当前版本开发中新增了几个列，导致插入数据出错，fmdb lasterror显示没有那几个column。<br>
 临时解决方案：如果这个表里没有任何数据，就drop掉，重新create。<br>
-最终解决方案：最初建表时多用一个extra column，里面保存json数据，可以兼容多个column扩展，也可以新建扩展表。后续版本最好不要更改表结构，如需要考虑好数据兼容和问题。</p>
+最终解决方案：最初建表时多用一个extra column，里面保存json数据，可以兼容多个column扩展，也可以新建扩展表。后续版本最好不要更改表结构，如真的需要，考虑好数据兼容和迁移问题。</p>
 
 <h3>NO2,文件的绝对路径变动</h3>
 
