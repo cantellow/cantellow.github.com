@@ -6,7 +6,7 @@ comments: true
 categories: ios
 ---
 <h3>NO1,sqlite数据结构不兼容</h3>
-<strong>现象：</strong>新的数据插不进去，功能性错误<!-- more --><br>
+现象：新的数据插不进去，功能性错误<!-- more --><br>
 解释：之前一直很注意这个问题，但还是忘记了。前一个版本将sqlite建表逻辑更新出去了，当前版本开发中新增了几个列，导致插入数据出错，fmdb lasterror显示没有那几个column。<br>
 临时解决方案：如果这个表里没有任何数据，就drop掉，重新create。<br>
 最终解决方案：最初建表时多用一个extra column，里面保存json数据，可以兼容多个column扩展，也可以新建扩展表。后续版本最好不要更改表结构，如真的需要，考虑好数据兼容和迁移问题。
@@ -19,3 +19,5 @@ categories: ios
 测试是软件质量的最后一道防护线，所以测试的流程和质量非常重要，上面两个升级的问题就是因为对app update未测试到导致没有被发现，最后我们决定使用OTA来部署app，参考资料：<br>
 <a target="_blank" href="https://help.apple.com/iosdeployment-apps/mac/1.1/?lang=en-us#app43ad871e">Installing apps wirelessly</a><br>
 <a target="_blank" href="http://www.cnblogs.com/yingkong1987/archive/2012/10/28/2743774.html">IOS通过OTA部署App</a>
+
+最后特别注意，每次提交app store时都应该保存一份源代码之后再开发下一版的功能，因为提交可能审核不通过，或者发布出去有严重bug需要紧急更新等等。
