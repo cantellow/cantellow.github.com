@@ -5,15 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iPhone5 [UIAlertView show]导致屏幕闪烁的问题 - cantellow's blog</title>
+  <title>iPhone5 UIAlertView导致屏幕闪烁的问题 - cantellow's blog</title>
   <meta name="author" content="cantellow">
 
   
-  <meta name="description" content="解决方法：将show方法放在主线程中 1 1
+  <meta name="description" content="解决方法：将项目中所有UIAlertView show方法都放在主线程中 1 1
 2
 3
 dispatch_async(dispatch_get_main_queue(), ^{ [alterView show];
-}); 我只在iPhone5上发现有这个问题，也有人说这是6.1版本的问题，参见：UIAlertView lags, &hellip;">
+}); 我只在iPhone5上发现有这个问题，也有人说这是6.1版本的问题，参见： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,7 +74,7 @@ dispatch_async(dispatch_get_main_queue(), ^{ [alterView show];
   
   <header>
     
-      <h1 class="entry-title">iPhone5 [UIAlertView Show]导致屏幕闪烁的问题</h1>
+      <h1 class="entry-title">iPhone5 UIAlertView导致屏幕闪烁的问题</h1>
     
     
       <p class="meta">
@@ -97,7 +97,7 @@ dispatch_async(dispatch_get_main_queue(), ^{ [alterView show];
   </header>
 
 
-<div class="entry-content"><p>解决方法：将show方法放在主线程中</p>
+<div class="entry-content"><p>解决方法：将项目中所有UIAlertView show方法都放在主线程中<!-- more --></p>
 
 <figure class='code'><figcaption><span>1  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -205,7 +205,7 @@ var jiathis_config = {data_track_clickback:'true'};
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/02/21/iphone5-uialertview-show-cause-the-screen-to-flicker/">iPhone5 [UIAlertView show]导致屏幕闪烁的问题</a>
+        <a href="/blog/2013/02/21/iphone5-uialertview-show-cause-the-screen-to-flicker/">iPhone5 UIAlertView导致屏幕闪烁的问题</a>
       </li>
     
       <li class="post">
