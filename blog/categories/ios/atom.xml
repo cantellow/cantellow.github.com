@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | cantellow's blog]]></title>
   <link href="http://cantellow.github.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://cantellow.github.com/"/>
-  <updated>2013-02-21T11:27:37+08:00</updated>
+  <updated>2013-02-21T11:45:48+08:00</updated>
   <id>http://cantellow.github.com/</id>
   <author>
     <name><![CDATA[cantellow]]></name>
@@ -66,6 +66,16 @@
 <a target="_blank" href="http://www.cnblogs.com/yingkong1987/archive/2012/10/28/2743774.html">IOS通过OTA部署App</a></p>
 
 <p>最后特别注意，每次提交app store时都应该保存一份源代码之后再开发下一版的功能，因为提交可能审核不通过，或者发布出去有严重bug需要紧急更新等等，如果你使用git，建议使用git-flow来指导你的分支模型。</p>
+
+<br>
+
+
+<p><a target="_blank" href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></p>
+
+<br>
+
+
+<p><img src="http://cantellow.github.com/images/posts/5.png" ></p>
 ]]></content>
   </entry>
   
