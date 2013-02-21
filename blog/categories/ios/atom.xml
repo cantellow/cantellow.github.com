@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | cantellow's blog]]></title>
   <link href="http://cantellow.github.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://cantellow.github.com/"/>
-  <updated>2013-02-21T11:17:49+08:00</updated>
+  <updated>2013-02-21T11:20:38+08:00</updated>
   <id>http://cantellow.github.com/</id>
   <author>
     <name><![CDATA[cantellow]]></name>
@@ -33,7 +33,7 @@
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-我只在iPhone5上发现有这个问题，参见：<a target="_blank" href="http://stackoverflow.com/questions/14743978/uialertview-lags-leaves-dim-effect-then-causes-the-screen-to-flicker-on-ios-6">UIAlertView lags, leaves dim effect, then causes the screen to flicker on iOS 6.1</a></p>
+我只在iPhone5上发现有这个问题，也有人说这是6.1版本的问题，参见：<a target="_blank" href="http://stackoverflow.com/questions/14743978/uialertview-lags-leaves-dim-effect-then-causes-the-screen-to-flicker-on-ios-6">UIAlertView lags, leaves dim effect, then causes the screen to flicker on iOS 6.1</a></p>
 ]]></content>
   </entry>
   
