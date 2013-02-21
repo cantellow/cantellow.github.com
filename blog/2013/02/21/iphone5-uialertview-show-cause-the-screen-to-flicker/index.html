@@ -5,11 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Photo全线JVM调优 - cantellow's blog</title>
+  <title>iPhone5 [UIAlertView show]导致屏幕闪烁的问题 - cantellow's blog</title>
   <meta name="author" content="cantellow">
 
   
-  <meta name="description" content="嗯，octopress让程序员写博客有了装的感觉，不过涉及到图片表格很多的文章还是好复杂呀，所以传到了豆丁： ">
+  <meta name="description" content="解决方法：将show方法放在主线程中 1 1
+2
+3
+dispatch_async(dispatch_get_main_queue(), ^{ [alterView show];
+}); 我只在iPhone5上发现有这个问题，参见：UIAlertView lags, leaves dim &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cantellow.github.com/blog/2013/01/31/the-photo-full-line-jvm-tuning/">
+  <link rel="canonical" href="http://cantellow.github.com/blog/2013/02/21/iphone5-uialertview-show-cause-the-screen-to-flicker/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -70,7 +74,7 @@
   
   <header>
     
-      <h1 class="entry-title">Photo全线JVM调优</h1>
+      <h1 class="entry-title">iPhone5 [UIAlertView Show]导致屏幕闪烁的问题</h1>
     
     
       <p class="meta">
@@ -86,19 +90,26 @@
   
 
 
-<time datetime="2013-01-31T17:40:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2013</time>
+<time datetime="2013-02-21T11:06:00+08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>嗯，octopress让程序员写博客有了装的感觉，不过涉及到图片表格很多的文章还是好复杂呀，所以传到了豆丁：<br></p>
+<div class="entry-content"><p>解决方法：将show方法放在主线程中</p>
 
-<!-- more -->
+<figure class='code'><figcaption><span>1  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">dispatch_async</span><span class="p">(</span><span class="n">dispatch_get_main_queue</span><span class="p">(),</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">alterView</span> <span class="n">show</span><span class="p">];</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p><embed src='http://www.docin.com/DocinViewer-594500096-144.swf' width='650' height='490' type=application/x-shockwave-flash ALLOWFULLSCREEN='true' ALLOWSCRIPTACCESS='always'></embed></p>
+<p>我只在iPhone5上发现有这个问题，参见：<a target="_blank" href="http://stackoverflow.com/questions/14743978/uialertview-lags-leaves-dim-effect-then-causes-the-screen-to-flicker-on-ios-6">UIAlertView lags, leaves dim effect, then causes the screen to flicker on iOS 6.1</a></p>
 </div>
 
 
@@ -121,12 +132,12 @@
   
 
 
-<time datetime="2013-01-31T17:40:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2013</time>
+<time datetime="2013-02-21T11:06:00+08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/java/'>Java</a>
+    <a class='category' href='/blog/categories/ios/'>ios</a>
   
 </span>
 
@@ -178,10 +189,8 @@ var jiathis_config = {data_track_clickback:'true'};
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/31/album-late-2011-online-significant-lessons-for-renren/" title="Previous Post: photo 2011年末 线上重大经验教训">&laquo; photo 2011年末 线上重大经验教训</a>
+        <a class="basic-alignment left" href="/blog/2013/02/17/two-traps-encountered/" title="Previous Post: APP升级遇到的两个问题">&laquo; APP升级遇到的两个问题</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/01/31/circular-references-cause-memory-leaks/" title="Next Post: 循环引用导致的内存泄漏">循环引用导致的内存泄漏 &raquo;</a>
       
     </p>
   </footer>

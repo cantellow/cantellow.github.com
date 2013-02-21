@@ -4,7 +4,7 @@
   <title><![CDATA[cantellow's blog]]></title>
   <link href="http://cantellow.github.com/atom.xml" rel="self"/>
   <link href="http://cantellow.github.com/"/>
-  <updated>2013-02-17T19:32:44+08:00</updated>
+  <updated>2013-02-21T11:17:49+08:00</updated>
   <id>http://cantellow.github.com/</id>
   <author>
     <name><![CDATA[cantellow]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iPhone5 [UIAlertView show]导致屏幕闪烁的问题]]></title>
+    <link href="http://cantellow.github.com/blog/2013/02/21/iphone5-uialertview-show-cause-the-screen-to-flicker/"/>
+    <updated>2013-02-21T11:06:00+08:00</updated>
+    <id>http://cantellow.github.com/blog/2013/02/21/iphone5-uialertview-show-cause-the-screen-to-flicker</id>
+    <content type="html"><![CDATA[<p>解决方法：将show方法放在主线程中</p>
+
+<figure class='code'><figcaption><span>1  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">dispatch_async</span><span class="p">(</span><span class="n">dispatch_get_main_queue</span><span class="p">(),</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">alterView</span> <span class="n">show</span><span class="p">];</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我只在iPhone5上发现有这个问题，参见：<a target="_blank" href="http://stackoverflow.com/questions/14743978/uialertview-lags-leaves-dim-effect-then-causes-the-screen-to-flicker-on-ios-6">UIAlertView lags, leaves dim effect, then causes the screen to flicker on iOS 6.1</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[APP升级遇到的两个问题]]></title>
