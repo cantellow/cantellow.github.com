@@ -158,13 +158,16 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>看似会造成死循环，其实不会，首先我们调用原始的objectAtIndex方法会执行到此方法，当执行到第一行objectAtIndex_swizzle时，objectAtIndex_swizzle方法的实现跟原始的objectAtIndex方法实现替换了，所以会执行原始的objectAtIndex方法，并不会造成死循环。</p>
+<p>看似会造成死循环，其实不会，首先我们调用原始的objectAtIndex方法会执行到此方法，当执行到第3行objectAtIndex_swizzle时，objectAtIndex_swizzle方法的实现跟原始的objectAtIndex方法实现替换了，所以会执行原始的objectAtIndex方法，并不会造成死循环。</p>
 
 <h3>Method Swizzling的缺点</h3>
 
 
-<p>1、不稳定，实验过程中发现并不是所有的方法都生效，原因没有深究。
+<p>1、不稳定，实验过程中发现并不是所有的方法都生效，原因没有深究。<br>
 2、严重的侵入性，使用不当会破坏原有的逻辑，比如多人开发的前提下，会有人使用try catch来判断当前objectAtIndex是否发生了异常，然后再分别执行不同的逻辑，如果被替换成objectAtIndex_swizzle了的话，调用方永远不会发生异常（因为在objectAtIndex_swizzle内部异常已经被处理了），所以会造成相关逻辑不会被执行。</p>
+
+<h3>最后的方案</h3>
+
 
 <p>总结上面的问题，最后我采用了简单的Category，实现了objectAtIndex_Safely方法，供开发者选择性的调用，在objectAtIndex_Safely方法里catch了异常之后，将异常信息上传至服务器，方便开发人员随时查询。</p>
 </div>
