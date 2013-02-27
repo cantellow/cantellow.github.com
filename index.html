@@ -9,7 +9,7 @@
   <meta name="author" content="cantellow">
 
   
-  <meta name="description" content="解决方法：将项目中所有UIAlertView show方法都放在主线程中">
+  <meta name="description" content="在Java中出现了运行时异常最多会让这个thread崩溃，但在IOS中却会让整个app崩溃，诸如[NSArray objectAtIndex:0]这种crash report在多线程环境中很难避免。有什么办法在出现了这种异常不崩溃，而且能上报异常信息，就像查看java后台异常那样？">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +67,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/27/some-thoughts-about-the-crash-of-the-ios/">关于IOS崩溃的一些想法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-27T10:48:00+08:00" pubdate data-updated="true">Feb 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Java中出现了运行时异常最多会让这个thread崩溃，但在IOS中却会让整个app崩溃，诸如[NSArray objectAtIndex:0]这种crash report在多线程环境中很难避免。有什么办法在出现了这种异常不崩溃，而且能上报异常信息，就像查看java后台异常那样？</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/02/27/some-thoughts-about-the-crash-of-the-ios/">继续阅读 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -450,6 +489,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/27/some-thoughts-about-the-crash-of-the-ios/">关于IOS崩溃的一些想法</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/02/21/iphone5-uialertview-show-cause-the-screen-to-flicker/">iPhone5 UIAlertView导致屏幕闪烁的问题</a>

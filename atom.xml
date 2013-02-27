@@ -4,7 +4,7 @@
   <title><![CDATA[cantellow's blog]]></title>
   <link href="http://cantellow.github.com/atom.xml" rel="self"/>
   <link href="http://cantellow.github.com/"/>
-  <updated>2013-02-21T11:52:46+08:00</updated>
+  <updated>2013-02-27T11:35:00+08:00</updated>
   <id>http://cantellow.github.com/</id>
   <author>
     <name><![CDATA[cantellow]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于IOS崩溃的一些想法]]></title>
+    <link href="http://cantellow.github.com/blog/2013/02/27/some-thoughts-about-the-crash-of-the-ios/"/>
+    <updated>2013-02-27T10:48:00+08:00</updated>
+    <id>http://cantellow.github.com/blog/2013/02/27/some-thoughts-about-the-crash-of-the-ios</id>
+    <content type="html"><![CDATA[<p>在Java中出现了运行时异常最多会让这个thread崩溃，但在IOS中却会让整个app崩溃，诸如[NSArray objectAtIndex:0]这种crash report在多线程环境中很难避免。有什么办法在出现了这种异常不崩溃，而且能上报异常信息，就像查看java后台异常那样？<!-- more --></p>
+
+<h3>Category</h3>
+
+
+<p>刚开始想利用Category将objectAtIndex覆盖掉，但是Category无法获得原始的objectAtIndex方法，毕竟我们只是想try catch一下，最终还是要调用原始objectAtIndex方法的。</p>
+
+<h3>Method Swizzling</h3>
+
+
+<p>Method Swizzling能利用OC的runtime环境，将方法的名字和方法的实现互相替换，这样就能获取到原始的objectAtIndex方法。参考：<a target='_blank' href="http://www.winddisk.com/2012/07/01/methodswizzling/">Method Swizzling</a></p>
+
+<p><a target='_blank' href="http://b2cloud.com.au/how-to-guides/method-swizzling-to-override-in-a-category">Method Swizzling to override in a category</a>给出了一种方法，就是在app启动的时候执行下面代码：</p>
+
+<figure class='code'><figcaption><span>code  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">swizzle</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">NSArray</span> <span class="nl">jr_swizzleMethod:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">objectAtIndex:</span><span class="p">)</span> <span class="nl">withMethod:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">objectAtIndex_swizzle:</span><span class="p">)</span> <span class="nl">error:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中jr_swizzleMethod方法是<a target='_blank' href="https://github.com/rentzsch/jrswizzle">jrswizzle</a>提供的方法。
+然后在NSArray的Category里加入objectAtIndex_swizzle方法:</p>
+
+<figure class='code'><figcaption><span>code  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">objectAtIndex_swizzle:</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">index</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">UIView</span> <span class="nl">jr_swizzleMethod:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">objectAtIndex:</span><span class="p">)</span> <span class="nl">withMethod:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">objectAtIndex_swizzle:</span><span class="p">)</span> <span class="nl">error:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'>  <span class="kt">id</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nl">objectAtIndex:</span><span class="n">index</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">UIView</span> <span class="nl">jr_swizzleMethod:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">objectAtIndex:</span><span class="p">)</span> <span class="nl">withMethod:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">objectAtIndex_swizzle:</span><span class="p">)</span> <span class="nl">error:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但其实上面的方法不用那么复杂：</p>
+
+<figure class='code'><figcaption><span>code  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">objectAtIndex_swizzle:</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">index</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="kt">id</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nl">objectAtIndex_swizzle:</span><span class="n">index</span><span class="p">];</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看似会造成死循环，其实不会，首先我们调用原始的objectAtIndex方法会执行到此方法，当执行到第一行objectAtIndex_swizzle时，objectAtIndex_swizzle方法的实现跟原始的objectAtIndex方法实现替换了，所以会执行原始的objectAtIndex方法，并不会造成死循环。</p>
+
+<h3>Method Swizzling的缺点</h3>
+
+
+<p>1、不稳定，实验过程中发现并不是所有的方法都生效，原因没有深究。
+2、严重的侵入性，使用不当会破坏原有的逻辑，比如多人开发的前提下，会有人使用try catch来判断当前objectAtIndex是否发生了异常，然后再分别执行不同的逻辑，如果被替换成objectAtIndex_swizzle了的话，调用方永远不会发生异常（因为在objectAtIndex_swizzle内部异常已经被处理了），所以会造成相关逻辑不会被执行。</p>
+
+<p>总结上面的问题，最后我采用了简单的Category，实现了objectAtIndex_Safely方法，供开发者选择性的调用，在objectAtIndex_Safely方法里catch了异常之后，将异常信息上传至服务器，方便开发人员随时查询。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iPhone5 UIAlertView导致屏幕闪烁的问题]]></title>
