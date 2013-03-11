@@ -4,7 +4,7 @@
   <title><![CDATA[cantellow's blog]]></title>
   <link href="http://cantellow.github.com/atom.xml" rel="self"/>
   <link href="http://cantellow.github.com/"/>
-  <updated>2013-03-11T19:28:42+08:00</updated>
+  <updated>2013-03-11T19:30:01+08:00</updated>
   <id>http://cantellow.github.com/</id>
   <author>
     <name><![CDATA[cantellow]]></name>
@@ -32,8 +32,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>结论就是，无论何时我们都应该使用utf8mb4来代替utf8：
-Never use utf8 in MySQL — always use utf8mb4 instead. Updating your databases and code might take some time, but it’s definitely worth the effort. Why would you arbitrarily limit the set of symbols that can be used in your database? Why would you lose data every time a user enters an astral symbol as part of a comment or message or whatever it is you store in your database? There’s no reason not to strive for full Unicode support everywhere. Do the right thing, and use utf8mb4.</p>
+<p>结论就是，无论何时我们都应该使用utf8mb4来代替utf8：</p>
+
+<p><i>Never use utf8 in MySQL — always use utf8mb4 instead. Updating your databases and code might take some time, but it’s definitely worth the effort. Why would you arbitrarily limit the set of symbols that can be used in your database? Why would you lose data every time a user enters an astral symbol as part of a comment or message or whatever it is you store in your database? There’s no reason not to strive for full Unicode support everywhere. Do the right thing, and use utf8mb4.</i></p>
 ]]></content>
   </entry>
   
