@@ -4,7 +4,7 @@
   <title><![CDATA[cantellow's blog]]></title>
   <link href="http://cantellow.github.com/atom.xml" rel="self"/>
   <link href="http://cantellow.github.com/"/>
-  <updated>2013-03-11T19:35:13+08:00</updated>
+  <updated>2013-03-11T19:37:07+08:00</updated>
   <id>http://cantellow.github.com/</id>
   <author>
     <name><![CDATA[cantellow]]></name>
@@ -28,13 +28,11 @@
 <p>查了一下资料，发现我的mysql不支持4-byte UTF8，遂按照<a target="_blank" href="http://mathiasbynens.be/notes/mysql-utf8mb4">How to support full Unicode in MySQL databases</a>此文章进行了所有的steps设置，但并没有生效，而且很多人看了此贴之后也回复表示java.sql.SQLException依旧，最后我通过查阅<a target="_blank" href="http://docs.oracle.com/cd/E17952_01/refman-5.5-en/connector-j-usagenotes-troubleshooting.html#qandaitem-23-3-15-1-15">mysql驱动的troubleshooting</a>做出以下改动最后才成功：</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;url&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;jdbc:mysql://localhost:3306/album?useUnicode=true&amp;amp;character_set_server=utf8mb4&quot;</span><span class="o">/&gt;</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nl">jdbc:mysql:</span><span class="c1">//localhost:3306/album?useUnicode=true&amp;amp;character_set_server=utf8mb4&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>结论就是，无论何时我们都应该使用utf8mb4来代替utf8：</p>
-
-<p><font style="font-weight:bold;font-style:italic;">Never use utf8 in MySQL — always use utf8mb4 instead. Updating your databases and code might take some time, but it’s definitely worth the effort. Why would you arbitrarily limit the set of symbols that can be used in your database? Why would you lose data every time a user enters an astral symbol as part of a comment or message or whatever it is you store in your database? There’s no reason not to strive for full Unicode support everywhere. Do the right thing, and use utf8mb4.</font></p>
+<p>结论就是，无论何时我们都应该使用utf8mb4来代替utf8：<br><font style="font-style:italic;">Never use utf8 in MySQL — always use utf8mb4 instead. Updating your databases and code might take some time, but it’s definitely worth the effort. Why would you arbitrarily limit the set of symbols that can be used in your database? Why would you lose data every time a user enters an astral symbol as part of a comment or message or whatever it is you store in your database? There’s no reason not to strive for full Unicode support everywhere. Do the right thing, and use utf8mb4.</font></p>
 ]]></content>
   </entry>
   
