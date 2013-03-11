@@ -9,7 +9,8 @@
   <meta name="author" content="cantellow">
 
   
-  <meta name="description" content="在Java中出现了运行时异常最多会让这个thread崩溃，但在IOS中却会让整个app崩溃，诸如[NSArray objectAtIndex:0]这种crash report在多线程环境中很难避免。有什么办法在出现了这种异常不崩溃，而且能上报异常信息，就像查看java后台异常那样？">
+  <meta name="description" content="场景是需要将iPhone上的数据上传服务器并存入mysql，遇到emoji表情的时候就出现下面的异常： 1
+Caused by: java.sql.SQLException: Incorrect string value: &#39;\xF0\x9F\x98\x84\xF0\x9F...&#39 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +68,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/11/mysql5-dot-5-support-emoji-expressions/">mysql5.5+ 支持emoji表情</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T18:58:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>场景是需要将iPhone上的数据上传服务器并存入mysql，遇到emoji表情的时候就出现下面的异常：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Caused</span> <span class="nl">by:</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">SQLException</span><span class="o">:</span> <span class="n">Incorrect</span> <span class="n">string</span> <span class="nl">value:</span> <span class="err">&#39;\</span><span class="n">xF0</span><span class="err">\</span><span class="n">x9F</span><span class="err">\</span><span class="n">x98</span><span class="err">\</span><span class="n">x84</span><span class="err">\</span><span class="n">xF0</span><span class="err">\</span><span class="n">x9F</span><span class="o">...</span><span class="err">&#39;</span> <span class="k">for</span> <span class="n">column</span> <span class="err">&#39;</span><span class="n">name</span><span class="err">&#39;</span> <span class="n">at</span> <span class="n">row</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>差了一下资料，发现我的mysql不支持4-byte UTF8，遂按照<a target="_blank" href="http://mathiasbynens.be/notes/mysql-utf8mb4">How to support full Unicode in MySQL databases</a>此文章进行了所有的steps设置，但并没有生效，java.sql.SQLException依旧，最后我通过查阅<a target="_blank" href="http://docs.oracle.com/cd/E17952_01/refman-5.5-en/connector-j-usagenotes-troubleshooting.html#qandaitem-23-3-15-1-15">mysql驱动的troubleshooting</a>做出以下改动最后才成功：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;url&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;jdbc:mysql://localhost:3306/album?useUnicode=true&amp;amp;character_set_server=utf8mb4&quot;</span><span class="o">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -435,50 +486,9 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/30/hi-octopress/">Hi Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-30T21:58:00+08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我的上一个博客<a target='_blank' href="http://cantellow.iteye.com">ITEYE</a>其实已经荒废了很久了，最近有想法重拾：<br>
-1、觉得<a target='_blank' href="http://octopress.org/">octopress</a>的风格非常好看，还有配合<a target='_blank' href="https://github.com/">github</a>搭建省下了VPS的钱<br>
-2、做技术的需要沉淀，需要积累，需要厚积而薄发，blog的方式能让你的知识融会贯通，要将脑海里的知识文本化，需要更多的代价和勇气，当然最后收获的也就更多。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/01/30/hi-octopress/">继续阅读 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -489,6 +499,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/03/11/mysql5-dot-5-support-emoji-expressions/">mysql5.5+ 支持emoji表情</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/02/27/some-thoughts-about-the-crash-of-the-ios/">关于IOS崩溃的一些想法</a>
